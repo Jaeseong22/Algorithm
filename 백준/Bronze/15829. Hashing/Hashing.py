@@ -1,5 +1,7 @@
 def solution():
     l = int(input())
+    m = 1234567891
+    r = 31
     st = input()
     result = 0
     num = 0
@@ -7,9 +9,9 @@ def solution():
     for i in st:
         for j in alpha:
             if(i == j):
-                result += alpha[j]*31**num
+                result += alpha[j]*r**num
                 num += 1
                 break
 
-    print(result)
+    print(result % m)
 solution()

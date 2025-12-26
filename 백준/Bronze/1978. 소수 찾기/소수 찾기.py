@@ -1,21 +1,20 @@
-def solution():
-    import sys
-    input = sys.stdin.readline
+import sys
+input = sys.stdin.readline
 
-    n = int(input())
-    result_ls = []
-    od_ls = list(map(int, input().strip().split()))
-    
-    for i in od_ls:
-        if i<2:
-            continue
-        is_prime = True
-        for j in range(2, int(i)):
-            if i%j == 0:
-                is_prime = False
+n = int(input())
+nums = list(map(int, input().split()))
+res = 0
+
+for i in range(n):
+    if nums[i] == 1:
+        continue
+    else:
+        is_so = True
+        for j in range(2, nums[i]):
+            if nums[i] % j == 0:
+                is_so = False
                 break
-        if is_prime:
-            result_ls.append(i)
+        if is_so:
+            res += 1
 
-    print(len(result_ls))
-solution()
+print(res)

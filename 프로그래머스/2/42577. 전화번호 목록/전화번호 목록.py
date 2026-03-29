@@ -1,14 +1,12 @@
 def solution(phone_book):
     answer = True
-    hash = {}
-    for i in phone_book:
-        hash[i] = 1
+    phone_book = set(phone_book)
     
     for num in phone_book:
-        arr = ''
+        p = ''
         for i in num:
-            arr += i
-            if arr in hash and arr != num:
+            p += i
+            if p != num and p in phone_book:
                 answer = False
-    
+                
     return answer

@@ -1,20 +1,22 @@
 def solution(answers):
-    answer = []
-    score = [0, 0, 0]
-    s1 = [1,2,3,4,5]
-    s2 = [2,1,2,3,2,4,2,5]
-    s3 = [3,3,1,1,2,2,4,4,5,5]
+    f = [1, 2, 3, 4, 5]
+    s = [2, 1, 2, 3, 2, 4, 2, 5]
+    t = [3, 3, 1, 1, 2, 2, 4, 4, 5, 5]
+    dic = {1:0, 2:0, 3:0}
     
     for i in range(len(answers)):
-        if answers[i] == s1[i%5]:
-            score[0] += 1
-        if answers[i] == s2[i%8]:
-            score[1] += 1
-        if answers[i] == s3[i%len(s3)]:
-            score[2] += 1
-
-    for idx, num in enumerate(score):
-        if num == max(score):
-            answer.append(idx + 1)
+        if f[i % len(f)] == answers[i]:
+            dic[1] += 1
+        if s[i % len(s)] == answers[i]:
+            dic[2] += 1
+        if t[i % len(t)] == answers[i]:
+            dic[3] += 1
+            
+    max_score = max(dic.values())
     
-    return answer
+    result = []
+    for person, cnt in dic.items():
+        if cnt == max_score:
+            result.append(person)
+        
+    return result

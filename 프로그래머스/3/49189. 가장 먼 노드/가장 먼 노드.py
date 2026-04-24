@@ -1,10 +1,11 @@
 def solution(n, edge):
     from collections import deque
     answer = 0
-    stack = [[] for _ in range(n+1)]
-    for start, nxt in edge:
-        stack[start].append(nxt)
-        stack[nxt].append(start)
+    graph = {i:[] for i in range(1, n+1)}
+    
+    for x, y in edge:
+        graph[x].append(y)
+        graph[y].append(x)
     
     q = deque()
     q.append((0, 1))
@@ -14,13 +15,15 @@ def solution(n, edge):
     while q:
         w, now = q.popleft()
         
-        for nxt in stack[now]:
+        for nxt in graph[now]:
             if visited[nxt] == -1:
                 q.append((w+1, nxt))
                 visited[nxt] = w+1
     
-    ax = max(visited)
+    max_answer = max(visited)
+    
     for i in visited:
-        if i == ax:
+        if i == max_answer:
             answer += 1
+    
     return answer

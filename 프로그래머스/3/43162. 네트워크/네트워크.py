@@ -1,22 +1,21 @@
 def solution(n, computers):
     answer = 0
     visited = [False] * n
-    def dfs(i):
-        stack = [i]
-        
-        while stack:
-            now = stack.pop()
-            visited[now] = True
-            for j in range(n):
-                if computers[now][j] and not visited[j]:
-                    stack.append(j)
     
-    cnt = 0
+    def dfs(a):
+        q = [a]
+        
+        while q:
+            now = q.pop()
+            visited[now] = True
+            
+            for i in range(n):
+                if computers[now][i] == 1 and not visited[i]:
+                    q.append(i)
+    
     for i in range(n):
         if not visited[i]:
-            cnt += 1
+            answer += 1
             dfs(i)
-    
-    answer = cnt
-            
+
     return answer
